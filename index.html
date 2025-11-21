@@ -307,43 +307,46 @@ window.addEventListener('load', ()=>{ if(!shouldSkip()) setTimeout(showModal, AU
 </script>
 
 	<style>
-  /* ====== BANNER MELAYANG ATAS (KHUSUS ADSTERRA) ====== */
-  #floating-banner-top {
+  /* ====== BANNER ADSTERRA DI TENGAH LAYAR ====== */
+  #center-banner-wrapper {
     position: fixed;
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     z-index: 999999;
-    background: #000000;
-    padding: 6px 8px;
-    display: none; /* awalnya disembunyikan, muncul setelah 5 detik */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    display: none; /* awalnya disembunyikan, muncul setelah delay */
   }
 
-  /* Biar banner nggak terlalu mepet kiri/kanan di HP */
-  #floating-banner-top-inner {
+  #center-banner-inner {
+    background: #000;           /* background kecil di belakang banner */
+    padding: 6px 8px;
+    border-radius: 8px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.5);
+    max-width: 100vw;
+    max-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  body.has-top-banner {
-    padding-top: 100px; /* supaya konten tidak ketutup banner */
+  #adsterra-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
+  /* kalau di HP, biar nggak kepotong */
   @media (max-width: 600px) {
-    #floating-banner-top {
-      width: 100%;
-      left: 0;
-      transform: none;
-      padding: 4px 4px;
+    #center-banner-inner {
+      width: 95vw;
+      padding: 4px 6px;
     }
   }
 </style>
 
-<!-- ====== CONTAINER BANNER ADSTERRA MELAYANG ====== -->
-<div id="floating-banner-top">
-  <div id="floating-banner-top-inner">
+<!-- ====== CONTAINER BANNER ADSTERRA DI TENGAH ====== -->
+<div id="center-banner-wrapper">
+  <div id="center-banner-inner">
     <div id="adsterra-container">
       <script type="text/javascript">
 	atOptions = {
@@ -361,12 +364,11 @@ window.addEventListener('load', ()=>{ if(!shouldSkip()) setTimeout(showModal, AU
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const banner = document.getElementById("floating-banner-top");
+    const wrapper = document.getElementById("center-banner-wrapper");
 
     // Muncul otomatis setelah 5 detik (5000 ms)
     setTimeout(function () {
-      banner.style.display = "block";
-      document.body.classList.add("has-top-banner");
+      wrapper.style.display = "block";
     }, 5000);
   });
 </script>
