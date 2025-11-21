@@ -306,6 +306,70 @@ window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') destroyModal(); }
 window.addEventListener('load', ()=>{ if(!shouldSkip()) setTimeout(showModal, AUTO_SHOW_DELAY_MS); });
 </script>
 
+	<style>
+  /* ====== BANNER MELAYANG ATAS (KHUSUS ADSTERRA) ====== */
+  #floating-banner-top {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999999;
+    background: #000000;
+    padding: 6px 8px;
+    display: none; /* awalnya disembunyikan, muncul setelah 5 detik */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  }
+
+  /* Biar banner nggak terlalu mepet kiri/kanan di HP */
+  #floating-banner-top-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  body.has-top-banner {
+    padding-top: 100px; /* supaya konten tidak ketutup banner */
+  }
+
+  @media (max-width: 600px) {
+    #floating-banner-top {
+      width: 100%;
+      left: 0;
+      transform: none;
+      padding: 4px 4px;
+    }
+  }
+</style>
+
+<!-- ====== CONTAINER BANNER ADSTERRA MELAYANG ====== -->
+<div id="floating-banner-top">
+  <div id="floating-banner-top-inner">
+    <div id="adsterra-container">
+      <script type="text/javascript">
+	atOptions = {
+		'key' : '426fe2fdb65bb1f0ab694e57aeee2fc2',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/426fe2fdb65bb1f0ab694e57aeee2fc2/invoke.js"></script>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const banner = document.getElementById("floating-banner-top");
+
+    // Muncul otomatis setelah 5 detik (5000 ms)
+    setTimeout(function () {
+      banner.style.display = "block";
+      document.body.classList.add("has-top-banner");
+    }, 5000);
+  });
+</script>
 
   <!-- ===== Histats (OK di akhir body) ===== -->
   <!-- Histats.com  START  (aync)-->
